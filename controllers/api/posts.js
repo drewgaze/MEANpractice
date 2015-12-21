@@ -17,7 +17,7 @@ router.post('/posts', function(req, res, next) {
 
 	var post = new Post({
 
-		username: req.body.username,
+		username: req.auth.username,
 		body:req.body.body
 	});
 
@@ -25,7 +25,7 @@ router.post('/posts', function(req, res, next) {
 
 		if (err) return next(err);
 
-		res.status(201).json(post);
+		res.sendStatus(201).json(post);
 	});
 });
 
