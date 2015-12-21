@@ -6,7 +6,9 @@ var config = require('../../config');
 
 router.post('/', function(req, res, next) {
 
-	User.findOne({username: req.body.username})
+	var username = req.body.username;
+
+	User.findOne({username: username})
 	.select('password').select('username')
 	.exec(function(err, user) {
 
@@ -18,7 +20,7 @@ router.post('/', function(req, res, next) {
 			if (err) return next(err);
 			if (!valid) return res.sendStatus(401);
 
-			var token = jwt.encode({username: user.password}, config.secret);
+			var token = jwt.encode({username: username}, config.secret);
 			res.send(token);
 		});
 	});
