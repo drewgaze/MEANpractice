@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.use(express.static(__dirname + '/../assets'));
 
-var filename = 'posts.html';
+var filename = 'app.html';
 
 var options = {root: './layouts', heads: {'x-timestamp': Date.now(), 'x-sent': true}};
 
