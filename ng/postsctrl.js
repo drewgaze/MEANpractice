@@ -7,7 +7,7 @@ angular.module('app')
 
 			PostsSvc.create({
 
-				username: '@drewgaze',
+				username: 'drewgaze',
 				body: $scope.postBody
 			})
 			.success(function(post) {
