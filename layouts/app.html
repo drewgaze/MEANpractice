@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
-<body>
+<body ng-app='app' ng-controller="AppllicationCtrl">
 	<nav class='navbar navbar-default'>
 		<div class='container'>
 			<ul class='nav navbar-nav'>
@@ -11,6 +11,9 @@
 				<li><a href="/#/register">Register</a></li>
 				<li><a href="/#/login">Login</a></li>
 			</ul>
+			<p ng-if='currentUser' class='navbar-text navbar-right'>
+				Signed in as {{ currentUser.username }}
+			</p>
 		</div>
 	</nav>
 	<div ng-view></div>
