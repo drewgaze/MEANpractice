@@ -5,7 +5,11 @@ angular.module('app')
 
 	svc.getUser = function() {
 
-		return $http.get('/api/users');
+		return $http.get('/api/users')
+		.then(function(response) {
+
+			return response.data;
+		});
 	}
 
 	svc.login = function(username, password) {
@@ -14,10 +18,10 @@ angular.module('app')
 
 			username: username, password: password
 
-		}).then(function(val) {
+		}).then(function(response) {
 
-			svc.token = val.data;
-			$http.defaults.headers.common['X-Auth'] = val.data;
+			svc.token = response.data;
+			$http.defaults.headers.common['X-Auth'] = response.data;
 			return svc.getUser();
 		});
 	}

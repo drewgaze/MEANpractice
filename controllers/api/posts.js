@@ -16,16 +16,16 @@ router.get('/posts', function(req, res, next) {
 router.post('/posts', function(req, res, next) {
 
 	var post = new Post({
-
-		username: req.auth.username,
 		body:req.body.body
 	});
+
+	post.username = req.auth.username;
 
 	post.save(function(err, post) {
 
 		if (err) return next(err);
 
-		res.sendStatus(201).json(post);
+		res.status(201).json(post);
 	});
 });
 

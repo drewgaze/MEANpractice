@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jwt-simple');
 var config = require('../../config');
 
-router.post('/', function(req, res, next) {
+router.post('/sessions', function(req, res, next) {
 
 	var username = req.body.username;
 

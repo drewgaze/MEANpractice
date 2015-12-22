@@ -4,9 +4,9 @@ angular.module('app')
 	$scope.login = function(username, password) {
 
 		UserSvc.login(username, password)
-		.then(function(response) {
+		.then(function(user) {
 
-			$scope.$emit('login', response.data);
+			$scope.$emit('login', user);
 		});
 	}
 });
