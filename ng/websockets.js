@@ -1,20 +1,30 @@
 angular.module('app')
 .run(function($rootScope) {
 
-	var url = 'ws://localhost:1337';
-	var connection = new WebSocket(url);
+	(function connect() {
 
-	connection.onopen = function() {
+		var url = 'ws://localhost:1337';
+		var connection = new WebSocket(url);
 
-		console.log('websocket connected');
-	}
+		connection.onopen = function() {
 
-	connection.onmessage = function(msg) {
+			console.log('websocket connected');
+		}
 
-		console.log(msg);
+		connection.onclose = function(e) {
 
-		var payload = JSON.parse(msg.data);
+			console.log('websocket closed. reconnecting...');
 
-		$rootScope.$broadcast('ws:' + payload.topic, payload.data);
-	}
+			$timeout(connect, 10*1000);
+		}
+
+		connection.onmessage = function(msg) {
+
+			console.log(msg);
+
+			var payload = JSON.parse(msg.data);
+
+			$rootScope.$broadcast('ws:' + payload.topic, payload.data);
+		}
+	})();
 });
