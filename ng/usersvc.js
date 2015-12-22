@@ -3,7 +3,7 @@ angular.module('app')
 
 	var svc = this;
 
-	svc.getUser = function() {
+	svc.getUser = function(token) {
 
 		return $http.get('/api/users')
 		.then(function(response) {
@@ -20,7 +20,8 @@ angular.module('app')
 
 		}).then(function(response) {
 
-			svc.token = response.data;
+			//svc.token = response.data;
+			window.localStorage.token = response.data;
 			$http.defaults.headers.common['X-Auth'] = response.data;
 			return svc.getUser();
 		});
@@ -38,5 +39,6 @@ angular.module('app')
 	svc.logout = function(username) {
 
 		$http.defaults.headers.common['X-Auth'] = null;
+		window.localStorage.token = null;
 	}
 });
