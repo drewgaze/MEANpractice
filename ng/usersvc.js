@@ -34,4 +34,9 @@ angular.module('app')
 			return svc.login(username, password);
 		});
 	}
+
+	svc.logout = function(username) {
+
+		$http.defaults.headers.common['X-Auth'] = null;
+	}
 });

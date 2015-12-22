@@ -10,5 +10,11 @@ angular.module('app')
 
 		$scope.currentUser = user;
 	});
+
+	$scope.logout = function(username, password) {
+
+		$scope.currentUser = null;
+		UserSvc.logout();
+	}
 	
 });
