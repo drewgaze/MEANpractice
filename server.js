@@ -12,3 +12,5 @@ var server = app.listen(1337, function() {
 
 	console.log('server listening on', server.address().port);
 });
+
+require('./websockets').connect(server);
