@@ -21,7 +21,7 @@ angular.module('app')
 		}).then(function(response) {
 
 			//svc.token = response.data;
-			window.localStorage.token = response.data;
+			localStorage.token = response.data;
 			$http.defaults.headers.common['X-Auth'] = response.data;
 			return svc.getUser();
 		});
@@ -38,7 +38,7 @@ angular.module('app')
 
 	svc.logout = function(username) {
 
-		$http.defaults.headers.common['X-Auth'] = null;
-		window.localStorage.token = null;
+		delete $http.defaults.headers.common['X-Auth'];
+		localStorage.removeItem('token');
 	}
 });

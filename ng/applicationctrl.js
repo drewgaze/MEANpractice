@@ -19,15 +19,15 @@ angular.module('app')
 
 	$scope.checkToken = function() {
 
-		if (window.localStorage.token && window.localStorage.token != 'null') {
+		if (localStorage.token && localStorage.token != 'null') {
 
-			$http.defaults.headers.common['X-Auth'] = window.localStorage.token;
+			$http.defaults.headers.common['X-Auth'] = localStorage.token;
 
 			UserSvc.getUser()
 			.then(function(user) {
 
 				$scope.currentUser = user;
-			})
+			});
 		}
 	}
 	

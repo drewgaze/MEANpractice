@@ -13,7 +13,7 @@ router.post('/sessions', function(req, res, next) {
 	.exec(function(err, user) {
 
 		if (err) return next(err);
-		if (!user) res.sendStatus(401);
+		if (!user) return res.sendStatus(401);
 
 		bcrypt.compare(req.body.password, user.password, function(err, valid) {
 
