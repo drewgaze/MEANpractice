@@ -5,5 +5,10 @@ angular.module('app')
 
 		$scope.currentUser = user;
 	});
+
+	$scope.$on('register', function(_, user) {
+
+		$scope.currentUser = user;
+	});
 	
 });
